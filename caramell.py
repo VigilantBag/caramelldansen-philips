@@ -1,5 +1,3 @@
-
-
 import socket
 import argparse
 import typing
@@ -21,6 +19,7 @@ RED: int = 2000
 CYAN: int = 39000
 PURPLE: int = 55000
 YELLOW: int = 10000
+GREEN: int = 20000
 
 def connect(ip: str) -> Bridge:
     bridge = Bridge(ip)
@@ -71,7 +70,7 @@ def party_time(lights: typing.List[Light]):
         light.saturation = preflight_command['saturation']
         light.hue = preflight_command['hue']
 
-    hues: typing.Iterable[int] = iter([YELLOW, RED, CYAN, PURPLE])
+    hues: typing.Iterable[int] = iter([YELLOW, RED, CYAN, PURPLE, GREEN])
 
     for hue in cycle(hues):
         asyncio.run(set_group_hue(lights, hue))
