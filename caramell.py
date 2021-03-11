@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 
 import socket
 import argparse
@@ -14,8 +14,8 @@ parser = argparse.ArgumentParser(description="Control your lights! Party time ðŸ
 
 parser.add_argument('--ip', dest='ip', help='IP of Bridge')
 parser.add_argument('--group', dest='group', help='Group of lights targetted for party mode')
+#parser.add_argument('--ascii', dest='ascii', help='Enable ascii video')
 parser.add_argument('--debug', dest='debug', action='store_true', help="Enter color debug mode")
-
 speed: float = 0.2 # Configurable speed
 RED: int = 2000
 CYAN: int = 39000
@@ -23,6 +23,7 @@ PURPLE: int = 55000
 YELLOW: int = 10000
 
 def connect(ip: str) -> Bridge:
+    bridge = Bridge(ip)
     if not ip:
         raise ValueError("must include ip of Bridge!")
 
@@ -32,10 +33,9 @@ def connect(ip: str) -> Bridge:
         raise ValueError("must include ip of Bridge!")
 
     try:
-        bridge = Bridge(ip)
+        print("Dance time boys!")
     except PhueRegistrationException:
         print("Go press the button on your Bridge and try again! Quick!")
-    
     return bridge
 
 
